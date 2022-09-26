@@ -4,22 +4,29 @@ import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
+import Spinner from "react-bootstrap/Spinner";
 
 function Admin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [send, setSend] = useState(false);
   const [correct, setCorrect] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   let navigate = useNavigate();
   useEffect(() => {
-    console.log(send, correct);
-  }, [send]);
+    const storage = JSON.parse(localStorage.getItem("login"));
+    if (!storage) return;
+    if (storage.login === true) navigate("/post");
+  }, [,correct]);
   const handleClick = (e) => {
     e.preventDefault();
     loginAdmin();
   };
   const loginAdmin = async () => {
     try {
+      setLoading(true);
+      
       const post = await axios.post(
         `https://backend-tata-blog.up.railway.app/user/login`,
         {
@@ -28,9 +35,14 @@ function Admin() {
         }
       );
       if (post.status === 200) {
+        console.log(post);
+        setLoading(false);
         setCorrect(true);
-        setTimeout(() => navigate("/post"), 2000);
+        const data = { login: true };
+        localStorage.setItem("login", JSON.stringify(data));
+        // DESCOMENTE setTimeout(() => navigate("/post"), 2000);
       }
+      setTimeout(() => setLoading(false), 2000);
     } catch (error) {
       console.log("post error", error);
     }
@@ -43,19 +55,19 @@ function Admin() {
         {!correct && (
           <>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email</Form.Label>
+              <Form.Label>📧Email</Form.Label>
               <Form.Control
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
-                placeholder="Email de adm"
+                placeholder="Email de administradora"
               />
               <Form.Text className="text-muted">
-                Digite sua conta de administradora.
+                Digite a conta que eu te passei 😁.
               </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Senha</Form.Label>
+              <Form.Label>🔒Senha</Form.Label>
               <Form.Control
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
@@ -64,11 +76,21 @@ function Admin() {
             </Form.Group>
 
             <Button
+            disabled={loading}
               variant="primary"
               type="submit"
               onClick={(e) => handleClick(e)}
             >
-              Confirmar
+              {loading && (
+                <Spinner
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+              )}
+              {!loading ? "Confirmar" : "Carregando"}
             </Button>
           </>
         )}
@@ -83,7 +105,7 @@ function Admin() {
               marginTop: "1rem",
             }}
           >
-            login e senha corretas!
+            login e senha corretas! ✔
           </Alert>
         )}
         {send && !correct && (
