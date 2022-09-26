@@ -1,0 +1,41 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+#App {
+  min-height: 100vh;
+  background-color: steelblue;
+}
+
+.form-box{
+  border: 1px solid white;
+  background-color: pink;
+  border-radius: 6px;
+  padding: 2rem;
+}
+
+.component{
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+.post-box{
+ width: 850px;
+ border: 1px solid white;
+  background-color: pink;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.post-textarea{
+  height: 260px !important;
+  width: 100%;
+}
+.post-file-input{
+  width: 60%;
+}
