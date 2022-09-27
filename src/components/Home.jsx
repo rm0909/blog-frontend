@@ -9,7 +9,6 @@ import Stack from "react-bootstrap/Stack";
 import pic from "../assets/pic/thais.jpeg";
 import { CardComponent } from "./card/CardComponent.jsx";
 
-
 function Home() {
   const [logged, setLogged] = useState(false);
   const [deleted, setDeleted] = useState(false);
@@ -39,46 +38,55 @@ function Home() {
     setTimeout(() => setDeleted, 1500);
   };
   return (
-    <Container as="main" id="home-component" className="pt-2">
-      <Row>
-        <Col className="cola" lg={9}>
-          {data &&
-            data.map((card) => {
-              return (
-                <CardComponent
-                  key={card._id}
-                  id={card._id}
-                  title={card.title}
-                  image={card.image}
-                  createdAt={card.createdAt}
-                  logged={logged}
-                  delete={handleDelete}
-                />
-              );
-            })}
+    <Container as="main" id="home-component" className="pt-2" fluid>
+      <Row style={{ height: "95vh" }}>
+        <Col className="cola">
+          <Row>
+            {data &&
+              data.map((card) => {
+                return (
+                  <Col className="mb-2">
+                    <CardComponent
+                      key={card._id}
+                      id={card._id}
+                      title={card.title}
+                      image={card.image}
+                      createdAt={card.createdAt}
+                      logged={logged}
+                      delete={handleDelete}
+                    />
+                  </Col>
+                );
+              })}
+          </Row>
         </Col>
-        <Col as="aside" className="colb ">
-          <Col className="mb-4 profile-box">
-            <div className="pic-box">
-              <img src={pic} alt="pic" />
-            </div>
-            <h4 className="text-center">Thaís Martins</h4>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
-            </p>
+        <Col as="aside" lg={3}>
+          <Col className="profile-col">
+            <>
+              <div className="pic-box">
+                <img src={pic} alt="pic" />
+              </div>
+              <h4 className="text-center">Thaís Martins</h4>
+              <p>Olá! Eu sou Thaís. Bem-vindos ao meu blog!</p>
+            </>
           </Col>
-          <Col as="aside" className="recent-posts mt-4">
+          {/* <Col as="aside" className="recent-posts mt-4">
             <Stack>
               <h6 className="text-center">Últimas postagens</h6>
-              <div>1</div>
-              <div>2</div>
-              <div>3</div>
-              <div>4</div>
+              <div className="text-center">
+                {data && data[data.length - 1]?.title}
+              </div>
+              <div className="text-center">
+                {data && data[data.length - 2]?.title}
+              </div>
+              <div className="text-center">
+                {data && data[data.length - 3]?.title}
+              </div>
+              <div className="text-center">
+                {data && data[data.length - 4]?.title}
+              </div>
             </Stack>
-          </Col>
+          </Col> */}
         </Col>
       </Row>
       <ToastContainer position="bottom-end">
@@ -90,7 +98,7 @@ function Home() {
               alt=""
             />
             <strong className="me-auto">Post deletado!</strong>
-            <small>now</small>
+            <small>agora</small>
           </Toast.Header>
           <Toast.Body>Esse post foi removido do banco de dados.</Toast.Body>
         </Toast>

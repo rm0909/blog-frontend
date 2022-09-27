@@ -27,8 +27,7 @@ function Post() {
     if (data.login === true) setLogged(true);
   };
   const handlePost = (e) => {
-    e.preventDefault();
-    if(title.length < 5 || text.length < 5) return alert("Titulo deve ter no minimo 5 letras") 
+    e.preventDefault(); 
     postArticle();
   };
   const postArticle = async () => {
@@ -149,7 +148,7 @@ function Post() {
                 alt=""
               />
               <strong className="me-auto">Post enviado!</strong>
-              <small>now</small>
+              <small>agora</small>
             </Toast.Header>
             <Toast.Body>
               O seu novo post aparecerá na página principal!

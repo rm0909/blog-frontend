@@ -5,8 +5,6 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
-import { Temporal, Intl, toTemporalInstant } from '@js-temporal/polyfill';
-
 
 function Admin() {
   const [email, setEmail] = useState("");
