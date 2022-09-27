@@ -4,12 +4,16 @@ import Toast from "react-bootstrap/Toast";
 import ToastContainer from "react-bootstrap/ToastContainer";
 import Spinner from "react-bootstrap/Spinner";
 import axios from "axios";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
+
 function Post() {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(
+    "https://res.cloudinary.com/cloudrm0909outlook/image/upload/v1664232814/posts/pedagogy_oub6gp.jpg"
+  );
   const [posted, setPosted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [logged, setLogged] = useState(false);
@@ -19,11 +23,12 @@ function Post() {
   }, []);
   const checkIfIsLogged = () => {
     const data = JSON.parse(localStorage.getItem("login"));
-    if (data.login === true) setLogged(true)
-    else {navigate("/admin")};
+    if (!data) return navigate("/admin");
+    if (data.login === true) setLogged(true);
   };
   const handlePost = (e) => {
     e.preventDefault();
+    if(title.length < 5 || text.length < 5) return alert("Titulo deve ter no minimo 5 letras") 
     postArticle();
   };
   const postArticle = async () => {
@@ -45,7 +50,7 @@ function Post() {
         console.log(post);
       }
     } catch (error) {
-      throw error;
+      console.error(error.response.data.message);
     }
   };
   const previewFiles = (file) => {
@@ -57,6 +62,7 @@ function Post() {
     const file = e.target.files[0];
     previewFiles(file);
   };
+
   const checkType = () => {
     if (
       typeof title !== "string" ||
@@ -68,6 +74,7 @@ function Post() {
       return alert("Preencha os campos corretamente!");
     }
   };
+
   return (
     <main className="component">
       <Form className="post-box">
@@ -78,6 +85,7 @@ function Post() {
             onChange={(e) => setTitle(e.target.value)}
             type="text"
             placeholder="Titulo para o seu post"
+            value={title}
             className="post-title"
           />
         </Form.Group>
@@ -88,6 +96,7 @@ function Post() {
             onChange={(e) => setText(e.target.value)}
             className="post-textarea"
             type="text"
+            value={text}
             as={"textarea"}
             placeholder="Digite seu texto aqui..."
           />
@@ -104,29 +113,35 @@ function Post() {
           <Form.Text className="text-muted">Imagem é opcional.</Form.Text>
         </Form.Group>
         <div className="button-row">
-          <Button
-            disabled={loading}
-            variant="primary"
-            type="submit"
-            onClick={(e) => handlePost(e)}
-          >
-            {loading && (
-              <Spinner
-                as="span"
-                animation="grow"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-              />
-            )}
-            {!loading ? "📮 Enviar" : "⏳ Carregando"}
-          </Button>
+          {logged && (
+            <Button
+              disabled={loading}
+              variant="primary"
+              type="submit"
+              onClick={(e) => {
+                handlePost(e);
+                setTitle("")
+                setText("")
+              }}
+            >
+              {loading && (
+                <Spinner
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+              )}
+              {!loading ? "📮 Enviar" : "⏳ Carregando"}
+            </Button>
+          )}
           <Button onClick={() => navigate("/")}>
             ✈ Ir para a página principal
           </Button>
         </div>
         <ToastContainer position="bottom-end">
-          <Toast show={posted} bg="success">
+          <Toast show={posted} bg="success" onClose={() => setPosted(false)}>
             <Toast.Header>
               <img
                 src="holder.js/20x20?text=%20"
@@ -134,7 +149,7 @@ function Post() {
                 alt=""
               />
               <strong className="me-auto">Post enviado!</strong>
-              <small>agora</small>
+              <small>now</small>
             </Toast.Header>
             <Toast.Body>
               O seu novo post aparecerá na página principal!
