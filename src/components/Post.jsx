@@ -139,7 +139,7 @@ function Post() {
             ✈ Ir para a página principal
           </Button>
         </div>
-        <ToastContainer position="bottom-end">
+        <ToastContainer position="bottom-start">
           <Toast show={posted} bg="success" onClose={() => setPosted(false)}>
             <Toast.Header>
               <img

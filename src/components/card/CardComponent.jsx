@@ -1,13 +1,11 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import {Link} from "react-router-dom"
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 function CardComponent(props) {
-  const [date, setDate] = useState("");
-  useEffect(() => {
-    setDate(new Date(props.createdAt).toLocaleDateString());
-    console.log(date);
-  }, []);
+  const [date] = useState(new Date(props.createdAt).toLocaleDateString());
+  
   const deletePost = async () => {
     try {
       const response = await axios.delete(
@@ -20,27 +18,23 @@ function CardComponent(props) {
       console.error(error.response.data.message);
     }
   };
+  
   return (
-    <Card className="card" border="primary">
-      <Card.Img variant="top" src={props.image} />
+    <Card className="card" border="primary" >
+      <Card.Img variant="top" src={props.image} className="card-image"/>
       <Card.Body>
-        <Card.Title className="text-center">{props.title}</Card.Title>
-        <Card.Text
-          className="d-flex flex-row 
-          align-items-center justify-content-around"
-        >
-          🗓 criado em {date}
-          {/* <Button size="md" variant="secondary">
-            Acessar post
-          </Button> */}
-        </Card.Text>
-        {props.logged && (
-          <Card.Footer className="text-center">
+        <Card.Title className="text-center"><h2>{props.title}</h2></Card.Title>
+        <Card.Text className="text-center">
+         <Link to={`/artigo/${props.id}`}>Ler artigo.</Link> 
+          </Card.Text>
+        <Card.Footer className="text-center">
+          <small className="text-muted">📆{date}</small>{" "}
+          {props.logged && (
             <Button size="sm" variant="danger" onClick={deletePost}>
               🗑 Excluir
             </Button>
-          </Card.Footer>
-        )}
+          )}
+        </Card.Footer>
       </Card.Body>
     </Card>
   );
