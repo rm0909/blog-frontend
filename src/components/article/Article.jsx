@@ -4,6 +4,7 @@ import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import pedagogy from "../../assets/pic/pedagogy.jpg"
 function Article() {
   const [data, setData] = useState();
   const params = useParams();
@@ -27,6 +28,9 @@ function Article() {
         <Col>
           {data && (
             <article >
+              <div className="pedagogy-pic-box">
+                <img src={pedagogy} alt="pedagogia" id="pedagogy-pic" />
+              </div>
               <h1 className="text-center">{data.title}</h1>
               <p>{data.text}</p>
             </article>
