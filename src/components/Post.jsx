@@ -7,6 +7,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
 
 function Post() {
   const [title, setTitle] = useState("");
@@ -46,7 +49,8 @@ function Post() {
       if (post.status === 200) {
         setPosted(true);
         setLoading(false);
-        console.log(post);
+        setTitle("")
+        setText("")
       }
     } catch (error) {
       console.error(error.response.data.message);
@@ -73,7 +77,6 @@ function Post() {
       return alert("Preencha os campos corretamente!");
     }
   };
-
   return (
     <main className="component">
       <Form className="post-box">
@@ -90,7 +93,8 @@ function Post() {
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>✏ Texto *</Form.Label>
-          <Form.Control
+          <ReactQuill theme="snow" value={text} onChange={setText} />
+          {/* <Form.Control
             required
             onChange={(e) => setText(e.target.value)}
             className="post-textarea"
@@ -98,7 +102,7 @@ function Post() {
             value={text}
             as={"textarea"}
             placeholder="Digite seu texto aqui..."
-          />
+          /> */}
           <Form.Text className="text-muted">Só inclua texto aqui.</Form.Text>
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
@@ -117,11 +121,7 @@ function Post() {
               disabled={loading}
               variant="primary"
               type="submit"
-              onClick={(e) => {
-                handlePost(e);
-                setTitle("")
-                setText("")
-              }}
+              onClick={(e) => {handlePost(e)}}
             >
               {loading && (
                 <Spinner
@@ -155,7 +155,8 @@ function Post() {
             </Toast.Body>
           </Toast>
         </ToastContainer>
-      </Form>
+      </Form> 
+    
     </main>
   );
 }

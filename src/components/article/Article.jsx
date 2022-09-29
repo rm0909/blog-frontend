@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Button from 'react-bootstrap/Button';
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import pedagogy from "../../assets/pic/pedagogy.jpg"
+import pedagogia from "../../assets/pic/pedagogia.png"
 function Article() {
   const [data, setData] = useState();
   const params = useParams();
+  const navigate = useNavigate()
   useEffect(() => {
     getArticle();
   }, []);
@@ -24,15 +26,16 @@ function Article() {
 
   return (
     <Container as="main" id="article-component">
+      <Button className="mb-2" variant="primary" onClick={()=> navigate("/")}>⬅ Voltar</Button>
       <Row>
         <Col>
           {data && (
             <article >
               <div className="pedagogy-pic-box">
-                <img src={pedagogy} alt="pedagogia" id="pedagogy-pic" />
+                <img src={pedagogia} alt="pedagogia" id="pedagogy-pic" />
               </div>
               <h1 className="text-center">{data.title}</h1>
-              <p>{data.text}</p>
+              <section dangerouslySetInnerHTML={{__html: data.text}} />
             </article>
           )}
         </Col>

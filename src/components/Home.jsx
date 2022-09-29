@@ -72,12 +72,11 @@ function Home() {
             <p>Bem-vindos ao meu blog!</p>
           </div>
           <div>
-           {logged && <Button size="sm" onClick={() => navigate("/post")}>
-              📬 Adicionar novo post.
+           {logged && <Button variant="success"size="sm" onClick={() => navigate("/post")}>
+             📩 Novo post.
             </Button>}
           </div>
         </Col>
-
       </Row>
       <ToastContainer position="bottom-end">
         <Toast show={deleted} bg="danger" onClose={() => setDeleted(false)}>
@@ -93,6 +92,7 @@ function Home() {
           <Toast.Body>Esse post foi removido do banco de dados.</Toast.Body>
         </Toast>
       </ToastContainer>
+      
     </Container>
   );
 }
