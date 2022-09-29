@@ -27,8 +27,6 @@ function Article() {
   return (
     <Container as="main" id="article-component">
       <Button className="mb-2" variant="primary" onClick={()=> navigate("/")}>⬅ Voltar</Button>
-      <Row>
-        <Col>
           {data && (
             <article >
               <div className="pedagogy-pic-box">
@@ -38,8 +36,7 @@ function Article() {
               <section dangerouslySetInnerHTML={{__html: data.text}} />
             </article>
           )}
-        </Col>
-      </Row>
+      
     </Container>
   );
 }

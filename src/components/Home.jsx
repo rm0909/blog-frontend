@@ -18,7 +18,11 @@ function Home() {
   useEffect(() => {
     getPosts();
     checkIfIsLogged();
-  }, [, deleted]);
+  }, []);
+  useEffect(() => {
+    getPosts();
+    checkIfIsLogged();
+  }, [deleted]);
   let navigate = useNavigate();
   const getPosts = async () => {
     try {
@@ -42,15 +46,14 @@ function Home() {
   };
   return (
     <Container as="main" id="home-component">
-      <Row>
-        <Col className="card-container p-4 my-2">
+      <Row className="justify-content-around">
+        <Col className="card-container mt-2" lg={8} md={7}>
           <Row>
             {data &&
               data.map((card) => {
                 return (
-                  <Col className="mb-2">
+                  <Col className="d-flex align-items-center justify-content-around p-4 mb-2" key={card._id}>
                     <CardComponent
-                      key={card._id}
                       id={card._id}
                       title={card.title}
                       image={card.image}
@@ -63,7 +66,7 @@ function Home() {
               })}
           </Row>
         </Col>
-        <Col as="aside" className="profile-col p-4 mt-2" lg={3}>
+        <Col as="aside" className="profile-col p-4 mt-2" lg={3} md={3}>
           <div className="center-col">
             <div className="pic-box mb-2">
               <img src={pic} alt="pic" />

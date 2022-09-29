@@ -93,16 +93,7 @@ function Post() {
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>✏ Texto *</Form.Label>
-          <ReactQuill theme="snow" value={text} onChange={setText} />
-          {/* <Form.Control
-            required
-            onChange={(e) => setText(e.target.value)}
-            className="post-textarea"
-            type="text"
-            value={text}
-            as={"textarea"}
-            placeholder="Digite seu texto aqui..."
-          /> */}
+          <ReactQuill theme="snow" value={text} onChange={setText} placeholder="Digite seu artigo aqui..."/>
           <Form.Text className="text-muted">Só inclua texto aqui.</Form.Text>
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
@@ -119,7 +110,7 @@ function Post() {
           {logged && (
             <Button
               disabled={loading}
-              variant="primary"
+              variant="success"
               type="submit"
               onClick={(e) => {handlePost(e)}}
             >

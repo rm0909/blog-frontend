@@ -30,7 +30,7 @@
   place-items: center;
 }
 .post-box {
-  width: 850px;
+  min-width: 90vw;
   border: 1px solid white;
   background-color: pink;
   border-radius: 6px;
@@ -52,14 +52,21 @@
   align-items: center;
   justify-content: space-between;
 }
-#home-component {
- position: relative;
-}
+
 .card-container{
   min-height: 95vh;
   border-radius: 6px;
   background-color: pink;
   border: 1px solid white;
+}
+.card{
+  width: 320px;
+  height: 350px;
+  margin-bottom: 2rem;
+  background-color: var(--ice);
+}
+.card h2{
+  color: slateblue;
 }
 .card-image{
   width: 318px;
@@ -94,11 +101,7 @@ aside img {
   width: 100%;
   border-radius: 6px;
 }
-.card{
-  width: 320px;
-  height: 350px;
-  background-color: var(--ice);
-}
+
 #article-component{
   padding: 1rem;
 }
@@ -114,7 +117,6 @@ article{
   padding: 3rem;
 }
 .pedagogy-pic-box{
-  height: 300px;
   width: fit-content;
   min-width: 315px;
   max-width: 650px;
@@ -128,8 +130,7 @@ article h1{
   font-family: Arial, Helvetica, sans-serif;
   font-size: 3rem;
   font-weight: 800;
-  
-  margin-bottom: 4rem;
+  margin: 3rem;
 }
 article p{
   font-family: Arial, Helvetica, sans-serif;
@@ -138,6 +139,24 @@ article p{
 .ql-container{
   background-color: white;
 }
-/* @media screen and (max-width:321px) {
-
-} */
+@media screen and (max-width:425px){
+  #article-component{
+    margin: 0;
+    padding: 4px;
+  }
+  article{
+    padding: 1rem;
+  }
+  article h1{
+    font-size: 2rem;
+    margin: 1rem;
+  }
+}
+@media screen and (max-width:380px) {
+  .pedagogy-pic-box{
+    min-width: 260px;
+  }
+  #article-component{
+    padding: 1px;
+  }
+}
