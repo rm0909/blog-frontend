@@ -1,16 +1,14 @@
-### Netlify page: https://thais-blog.netlify.app/
-
-
+## Netlify page: https://thais-blog.netlify.app/
 
 Minha prima me pediu para eu criar um blog para ela postar os trabalhos da faculdade de pedagogia.
 
-Então como eu já tenho experiencias com projetos que usam mongodb e express, não tive muitas dificuldades no backend. 
+Então como eu já tenho experiencias com projetos que usam mongodb e express, não tive muitas dificuldades no [backend](https://github.com/rm0909/blog-backend). 
 
 Criei um model mongoose para uma unica conta de admin, afinal só ela irá postar. 
 
 E criei um model para posts (titulo, texto e imagem). 
 
-Terminei o backend e fiz o deploy no Railway (RIP heroku). 
+Terminei o [backend](https://github.com/rm0909/blog-backend) e fiz o deploy no Railway (RIP heroku). 
 
 Usando React-Router Fiz uma tela de login e uma tela de post onde só ela terá acesso. 
 
@@ -27,6 +25,8 @@ Depois eu fiz a pagina dos artigos e depois foi só consertar as falhas no css (
 
 ![admin page](https://user-images.githubusercontent.com/88063797/193212406-a08a0b00-466c-4e58-a8bf-40a128c8d857.png)
 ![post page](https://user-images.githubusercontent.com/88063797/193215238-96c96458-b8e3-4056-a553-1a77274ce83d.png)
+
+## Link para o backend: (https://github.com/rm0909/blog-backend)
 
 ### Feito com:
 - Mongodb, Express, Cloudinary
