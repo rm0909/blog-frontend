@@ -30,7 +30,7 @@
   place-items: center;
 }
 .post-box {
-  min-width: 90vw;
+  max-width: 1000px;
   border: 1px solid white;
   background-color: pink;
   border-radius: 6px;
@@ -60,13 +60,14 @@
   border: 1px solid white;
 }
 .card{
-  width: 320px;
-  height: 350px;
+  min-width: 320px;
+  min-height: 350px;
   margin-bottom: 2rem;
   background-color: var(--ice);
 }
 .card h2{
   color: slateblue;
+  font-size: 100%;
 }
 .card-image{
   width: 318px;
@@ -127,14 +128,24 @@ article{
   border-radius: 6px;
 }
 article h1{
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
   font-size: 3rem;
   font-weight: 800;
   margin: 3rem;
 }
 article p{
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
   font-size: 1.6rem;
+  width: 100%;
+}
+article img{
+  max-width: 100%;
+}
+article{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .ql-container{
   background-color: white;
@@ -151,6 +162,7 @@ article p{
     font-size: 2rem;
     margin: 1rem;
   }
+  
 }
 @media screen and (max-width:380px) {
   .pedagogy-pic-box{

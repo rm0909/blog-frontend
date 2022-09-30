@@ -10,12 +10,11 @@ import { useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-
 function Post() {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [image, setImage] = useState(
-    "https://res.cloudinary.com/cloudrm0909outlook/image/upload/v1664232814/posts/pedagogy_oub6gp.jpg"
+    "https://res.cloudinary.com/cloudrm0909outlook/image/upload/v1664500015/posts/nao%20exclua/Imagem%20de%20post%20padrao.jpg"
   );
   const [posted, setPosted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -30,7 +29,7 @@ function Post() {
     if (data.login === true) setLogged(true);
   };
   const handlePost = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     postArticle();
   };
   const postArticle = async () => {
@@ -49,8 +48,8 @@ function Post() {
       if (post.status === 200) {
         setPosted(true);
         setLoading(false);
-        setTitle("")
-        setText("")
+        setTitle("");
+        setText("");
       }
     } catch (error) {
       console.error(error.response.data.message);
@@ -77,13 +76,36 @@ function Post() {
       return alert("Preencha os campos corretamente!");
     }
   };
+
+  const modules = {
+    toolbar: [
+      [{ 'header': [1, 2, false] }],
+      ['bold', 'italic', 'underline','strike', 'blockquote'],
+      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+      ['link', 'image'],
+      ['clean']
+    ],
+  }
+
+  const formats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent',
+    'link', 'image'
+  ]
+
   return (
     <main className="component">
-      <Form className="post-box">
+      <Form
+        className="post-box"
+        onSubmit={(e) => {
+          handlePost(e);
+        }}
+      >
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>🏷 Título *</Form.Label>
           <Form.Control
-            required
+            required={true}
             onChange={(e) => setTitle(e.target.value)}
             type="text"
             placeholder="Titulo para o seu post"
@@ -93,11 +115,18 @@ function Post() {
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>✏ Texto *</Form.Label>
-          <ReactQuill theme="snow" value={text} onChange={setText} placeholder="Digite seu artigo aqui..."/>
+          <ReactQuill
+            theme="snow"
+            value={text}
+            modules={modules}
+            required={true}
+            placeholder="Digite seu artigo aqui..."
+            onChange={setText}
+          />
           <Form.Text className="text-muted">Só inclua texto aqui.</Form.Text>
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
-          <Form.Label>🖼 Selecione uma imagem para ser capa</Form.Label>
+          <Form.Label>🖼 Selecione uma imagem para ser a capa do seu post</Form.Label>
           <Form.Control
             onChange={(e) => handleFile(e)}
             type="file"
@@ -108,12 +137,7 @@ function Post() {
         </Form.Group>
         <div className="button-row">
           {logged && (
-            <Button
-              disabled={loading}
-              variant="success"
-              type="submit"
-              onClick={(e) => {handlePost(e)}}
-            >
+            <Button disabled={loading} variant="success" type="submit">
               {loading && (
                 <Spinner
                   as="span"
@@ -146,8 +170,7 @@ function Post() {
             </Toast.Body>
           </Toast>
         </ToastContainer>
-      </Form> 
-    
+      </Form>
     </main>
   );
 }

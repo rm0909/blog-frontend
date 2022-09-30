@@ -3,8 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import pedagogia from "../../assets/pic/pedagogia.png"
 function Article() {
   const [data, setData] = useState();
@@ -36,7 +34,6 @@ function Article() {
               <section dangerouslySetInnerHTML={{__html: data.text}} />
             </article>
           )}
-      
     </Container>
   );
 }
