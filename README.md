@@ -26,7 +26,7 @@ Depois eu fiz a pagina dos artigos e depois foi só consertar as falhas no css (
 
 
 ![admin page](https://user-images.githubusercontent.com/88063797/193212406-a08a0b00-466c-4e58-a8bf-40a128c8d857.png)
-![post page](https://user-images.githubusercontent.com/88063797/193212451-929fc374-d826-493e-892e-faf9665f2d68.png)
+![post page](https://user-images.githubusercontent.com/88063797/193215238-96c96458-b8e3-4056-a553-1a77274ce83d.png)
 
 ### Feito com:
 - Mongodb, Express, Cloudinary
