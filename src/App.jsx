@@ -1,5 +1,4 @@
 import "./App.css";
-import "./App.scss";
 import { Route, Routes } from "react-router-dom";
 import { Admin } from "./components/Admin.jsx";
 import { Post } from "./components/Post.jsx";

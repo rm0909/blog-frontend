@@ -123,7 +123,6 @@ function Post() {
             placeholder="Digite seu artigo aqui..."
             onChange={setText}
           />
-          <Form.Text className="text-muted">Só inclua texto aqui.</Form.Text>
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Label>🖼 Selecione uma imagem para ser a capa do seu post</Form.Label>
@@ -133,7 +132,7 @@ function Post() {
             className="post-file-input"
             accept="image/png, image/jpeg, image/jpg, image/jfif"
           />
-          <Form.Text className="text-muted">Imagem é opcional.</Form.Text>
+          <Form.Text className="text-muted">Imagem é opcional. Vai ser gerada uma imagem padrão se você não escolher nenhuma.</Form.Text>
         </Form.Group>
         <div className="button-row">
           {logged && (

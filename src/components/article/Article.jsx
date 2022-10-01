@@ -30,7 +30,7 @@ function Article() {
               <div className="pedagogy-pic-box">
                 <img src={pedagogia} alt="pedagogia" id="pedagogy-pic" />
               </div>
-              <h1 className="text-center">{data.title}</h1>
+              <h1 className="text-center" id="article-title">{data.title}</h1>
               <section dangerouslySetInnerHTML={{__html: data.text}} />
             </article>
           )}
